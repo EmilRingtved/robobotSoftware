@@ -75,8 +75,8 @@ void step1()
   event.clearEvents();
   // add mission lines
   bridge.tx("regbot madd vel=0.2, edger=0:tilt>1\n"); // follow the line to the right until the incline of the ramp
-  bridge.tx("regbot madd vel=0.2, edger=0:tilt>0.2\n")  // follow the line to the right until the decline of the ramp
-  bridge.tx("regbot madd vel=0.2, edger=0:dist=1\n")  // continue for 1m
+  bridge.tx("regbot madd vel=0.2, edger=0:tilt>0.2\n");  // follow the line to the right until the decline of the ramp
+  bridge.tx("regbot madd vel=0.2, edger=0:dist=1\n");  // continue for 1m
   
   // start this mission
   bridge.tx("regbot start\n");

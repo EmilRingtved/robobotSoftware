@@ -74,7 +74,10 @@ void step1()
   // clear events received from last mission
   event.clearEvents();
   // add mission lines
-  bridge.tx("regbot madd vel=0.2, edger=0:dist=6\n"); // follow the line to the right until the bottom of the ramp
+  bridge.tx("regbot madd vel=0.2, edger=0:tilt<40\n"); // follow the line to the right until the incline of the ramp
+  bridge.tx("regbot madd vel=0.2, edger=0:tilt>30\n")  // follow the line to the right until the decline of the ramp
+  bridge.tx("regbot madd vel=0.2, edger=0:dist=1\n")  // continue for 1m
+  
   // start this mission
   bridge.tx("regbot start\n");
   // wait until finished
@@ -83,8 +86,27 @@ void step1()
 //   sound.say(". Step one finished.");
 }
 
-// Complete the objective 
+// Rotary challenge
 void step2()
+{
+
+  sound.say(". Step two.", 0.3);
+  // remove old mission
+  bridge.tx("regbot mclear\n");
+  // clear events received from last mission
+  event.clearEvents();
+
+  // Drive until the robot is 25cm from the spining disk
+  bridge.tx("regbot madd vel=0.35, edger=0 : ir2 < 0.25");
+  // wait until the disk opening is regisered
+  bridge.tx("regbot madd vel=0: ir2 > 30");
+  //quickly drive thrugh the gate when its open
+  bridge.tx("regbot madd vel=1,edger=0 : dist=1");
+  
+}
+
+// Speed challenge
+void step3()
 {
 
 }

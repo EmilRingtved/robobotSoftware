@@ -74,8 +74,8 @@ void step1()
   // clear events received from last mission
   event.clearEvents();
   // add mission lines
-  bridge.tx("regbot madd vel=0.2, edger=0:tilt<40\n"); // follow the line to the right until the incline of the ramp
-  bridge.tx("regbot madd vel=0.2, edger=0:tilt>30\n")  // follow the line to the right until the decline of the ramp
+  bridge.tx("regbot madd vel=0.2, edger=0:tilt>1\n"); // follow the line to the right until the incline of the ramp
+  bridge.tx("regbot madd vel=0.2, edger=0:tilt>0.2\n")  // follow the line to the right until the decline of the ramp
   bridge.tx("regbot madd vel=0.2, edger=0:dist=1\n")  // continue for 1m
   
   // start this mission
@@ -101,7 +101,13 @@ void step2()
   // wait until the disk opening is regisered
   bridge.tx("regbot madd vel=0: ir2 > 30");
   //quickly drive thrugh the gate when its open
-  bridge.tx("regbot madd vel=1,edger=0 : dist=1");
+  bridge.tx("regbot madd vel=1,edger=0 : time=1");
+  //continue at a lower speed until a crossing line is registered
+  bridge.tx("regbot madd vel=1: xl>16");
+  //turn the robot 
+  bridge.tx("regbot madd tr=0:turn=90");
+  // start this mission
+  bridge.tx("regbot start\n");
   
 }
 

@@ -90,7 +90,7 @@ void step1()
 void step2()
 {
 
-  sound.say(". Step two.", 0.3);
+  sound.say(". Fetty wap.", 0.3);
   // remove old mission
   bridge.tx("regbot mclear\n");
   // clear events received from last mission

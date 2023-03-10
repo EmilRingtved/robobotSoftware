@@ -65,18 +65,22 @@ bool setup(int argc, char **argv)
   return true;
 }
 
-// Follow the line to the right until the ramp objective has been completed
+// Follow the line to the right until the ramp objective has been completed 
 void step1()
 {
-  sound.say(". Step one.", 0.3);
+  sound.say(". 17 38. Yah.", 0.3);
   // remove old mission
   bridge.tx("regbot mclear\n");
   // clear events received from last mission
   event.clearEvents();
   // add mission lines
-  bridge.tx("regbot madd vel=0.2, edger=0:tilt>1\n"); // follow the line to the right until the incline of the ramp
-  bridge.tx("regbot madd vel=0.2, edger=0:tilt>0.2\n");  // follow the line to the right until the decline of the ramp
-  bridge.tx("regbot madd vel=0.2, edger=0:dist=1\n");  // continue for 1m
+  bridge.tx("regbot madd vel=0.5, edger=0:dist=2.65\n"); // follow the line to the right until the first challenge
+  bridge.tx("regbot madd vel=0:time=1\n"); // wait under the challenge to flex
+  bridge.tx("regbot madd vel=0.5, edger=1:time=5\n");  // follow the line to the right until the first turn is complete
+  bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.1\n");  // continue until just before the goal post
+  bridge.tx("regbot madd tr=0,vel=0.2:turn=190\n") // turn the robot to face along the line
+  bridge.tx("regbot madd vel=0.25,edger=2:dist=1.90\b") // countinue to the line going towards the rotating challenge
+  bridge.tx("regbot madd tr=0,vel=0.2:turn=90\b") // turn onto the path of the rotating challenge
   
   // start this mission
   bridge.tx("regbot start\n");
@@ -90,22 +94,26 @@ void step1()
 void step2()
 {
 
-  sound.say(". Fetty wap.", 0.3);
+  sound.say(". Trap queen.", 0.3);
   // remove old mission
   bridge.tx("regbot mclear\n");
   // clear events received from last mission
   event.clearEvents();
 
+  // Follow the line until the discontinuety in the line
+  bridge.tx("regbot madd vel=0.25,edger=0:dist=0.30\n");
+  //drive 0.6m to overcome the discontinuety 
+  bridge.tx("regbot madd vel=0.25:dist=0.60\n");
   // Drive until the robot is 25cm from the spining disk
-  bridge.tx("regbot madd vel=0.35, edger=0 : ir2 < 0.25");
+  bridge.tx("regbot madd vel=0.35, edger=0 : ir2 < 0.25\n");
   // wait until the disk opening is regisered
-  bridge.tx("regbot madd vel=0: ir2 > 30");
+  bridge.tx("regbot madd vel=0: ir2 > 0.3\n");
   //quickly drive thrugh the gate when its open
-  bridge.tx("regbot madd vel=1,edger=0 : time=1");
+  bridge.tx("regbot madd vel=0.5,edger=0 : time=1\n");
   //continue at a lower speed until a crossing line is registered
-  bridge.tx("regbot madd vel=1: xl>16");
+  bridge.tx("regbot madd vel=0.35: xl>16\n");
   //turn the robot 
-  bridge.tx("regbot madd tr=0:turn=90");
+  bridge.tx("regbot madd tr=0,vel=0.2:turn=90\n");
   // start this mission
   bridge.tx("regbot start\n");
   

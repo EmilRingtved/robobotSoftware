@@ -112,7 +112,7 @@ void step2()
   bridge.tx("regbot madd vel=0.5,edger=0 : time=1\n");
   //continue at a lower speed until a crossing line is registered
   bridge.tx("regbot madd vel=0.35: xl>16\n");
-  //turn the robot 
+  //turn the robot onto the line
   bridge.tx("regbot madd tr=0,vel=0.2:turn=90\n");
   // start this mission
   bridge.tx("regbot start\n");
@@ -122,7 +122,28 @@ void step2()
 // Speed challenge
 void step3()
 {
+  bridge.tx("regbot mclear\n");
+  event.clearEvents();
 
+    // vel=0.5, edger=0.0: dist=0.9
+    // vel=1.0, edger=0.0: dist=1.4
+    // vel=0.5, edger=0.0: dist=0.1
+    // vel=1.0, edger=0.0: dist=3.9
+    // vel=0.5, edger=0.0: dist=0.1
+    // vel=1.0, edger=0.0: dist=1.4
+
+  // start this mission
+  bridge.tx("regbot start\n");
+}
+
+// Tunnel challenge
+void step4()
+{
+  bridge.tx("regbot mclear\n");
+  event.clearEvents();
+
+  // start this mission
+  bridge.tx("regbot start\n");
 }
 
 int main(int argc, char **argv) 
@@ -131,8 +152,10 @@ int main(int argc, char **argv)
   { // start mission
     std::cout << "# Robobot mission starting ...\n";
     //
-    step1();
-    step2();
+    step1(); // Ramp
+    step2(); // Rotating disk
+    step3(); // Racetrack
+    step4(); // Tunnel challenge
     //
     std::cout << "# Robobot mission finished ...\n";
     // remember to close camera

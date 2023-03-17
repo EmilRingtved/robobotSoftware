@@ -127,10 +127,8 @@ void step3()
 
     bridge.tx("regbot madd vel=0.5, edger=0.0: dist=0.9\n"); // Drive to the start of the race track
     bridge.tx("regbot madd vel=1.0, edger=0.0: dist=1.4\n"); // Speed up towards the first corner
-    bridge.tx("regbot madd vel=0.5, edger=0.0: dist=0.1\n"); // Set the speed down in the corner
-    bridge.tx("regbot madd vel=1.0, edger=0.0: dist=3.9\n"); // Reset the speed to 1 on the long straight strech 
-    bridge.tx("regbot madd vel=0.5, edger=0.0: dist=0.1\n"); // speed down in the turn before the goal
-    bridge.tx(" vel=1.0, edger=0.0: dist=1.4\n"); // drive through the goal
+    bridge.tx("regbot madd vel=1.0, edgel=0.0: dist=3.9\n"); // Reset the speed to 1 on the long straight strech 
+    bridge.tx("regbot madd vel=1.0, edgel=0.0: dist=1.4\n"); // drive through the goal
 
   // start this mission
   bridge.tx("regbot start\n");

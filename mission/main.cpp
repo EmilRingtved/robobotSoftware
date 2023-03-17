@@ -126,10 +126,11 @@ void step3()
   event.clearEvents();
 
     bridge.tx("regbot madd vel=0.5, edger=0.0: dist=0.9\n"); // Drive to the start of the race track
-    bridge.tx("regbot madd vel=1.0, edger=0.0: dist=1.4\n"); // Speed up towards the first corner
-    bridge.tx("regbot madd vel=1.0, edgel=0.0: dist=3.9\n"); // Reset the speed to 1 on the long straight strech 
-    bridge.tx("regbot madd vel=1.0, edgel=0.0: dist=1.4\n"); // drive through the goal
-
+    bridge.tx("regbot madd vel=1.0, edger=0.0: dist=2.5\n"); // Speed up towards the first corner
+    bridge.tx("regbot madd servo=1, pservo=-550, vservo=0\n"); // Reset the speed to 1 on the long straight strech 
+    bridge.tx("regbot madd vel=1.0, edgel=0.0: dist=2.8\n"); // drive through the goal
+    bridge.tx("regbot madd vel=1.0, edgel=0.0: lv<4\n"); // drive through the goal
+    bridge.tx("regbot madd servo=1, pservo=2000, vservo=0\n"); // Reset the speed to 1 on the long straight strech 
   // start this mission
   bridge.tx("regbot start\n");
 }

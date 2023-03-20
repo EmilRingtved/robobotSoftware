@@ -81,7 +81,7 @@ void step1()
   bridge.tx("regbot madd tr=0,vel=0.5:turn=190\n"); // turn the robot to face along the line
   bridge.tx("regbot madd vel=0:time=1\n"); // wait to flex
   bridge.tx("regbot madd vel=0.25,edger=1:dist=1.5\n"); // countinue to the line going towards the rotating challenge
-  bridge.tx("regbot madd vel=0.25,edger=2:xl>10\n"); // countinue to the line going towards the rotating challenge
+  bridge.tx("regbot madd vel=0.25,edger=2.5:xl>6\n"); // countinue to the line going towards the rotating challenge
   bridge.tx("regbot madd tr=0,vel=0.2:turn=-90\n"); // turn onto the path of the rotating challenge
   
   // start this mission

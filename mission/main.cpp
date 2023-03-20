@@ -82,7 +82,7 @@ void step1()
   bridge.tx("regbot madd vel=0:time=1\n"); // wait to flex
   bridge.tx("regbot madd vel=0.25,edger=1:dist=1.25\n"); // countinue to the line going towards the rotating challenge
   bridge.tx("regbot madd vel=0.25,edger=2:xl>6\n"); // countinue to the line going towards the rotating challenge
-  bridge.tx("regbot madd tr=0,vel=0.25:turn=-90\n"); // turn onto the path of the rotating challenge
+  bridge.tx("regbot madd tr=0.05,vel=0.25:turn=-90\n"); // turn onto the path of the rotating challenge
   
   // start this mission
   bridge.tx("regbot start\n");
@@ -102,14 +102,12 @@ void step2()
   // clear events received from last mission
   event.clearEvents();
 
-  // Follow the line until the discontinuety in the line
-  bridge.tx("regbot madd vel=0.1,edger=-2:lv<4\n");
-  // Turn onto the other line
-  bridge.tx("regbot madd tr=0,vel=0.25:turn=-90\n");
-  // Drive until the robot is 25cm from the spining disk
-  bridge.tx("regbot madd vel=0.1,edgel=0:ir2 < 0.15\n");
-  // wait until the disk opening is regisered
-  bridge.tx("regbot madd vel=0: ir2 > 0.3\n");
+  
+  bridge.tx("regbot madd vel=0.1,edger=-2:lv<4\n"); // Follow the line until the discontinuety in the line
+  bridge.tx("regbot madd tr=0.1,vel=0.25:turn=-90\n");  // Turn onto the other line
+  bridge.tx("regbot madd vel=0.05,edgel=0:ir2 < 0.2\n");// Drive until the robot is 25cm from the spining disk
+  bridge.tx("regbot madd vel=0: ir2 > 0.5\n");  // wait until the disk opening is regisered
+  bridge.tx("regbot madd vel=0: time=0.5\n"); // delay for disc to spin
   //quickly drive thrugh the gate when its open
   bridge.tx("regbot madd vel=0.5,edger=0 : lv<4\n");
   //continue at a lower speed until a crossing line is registered
@@ -127,14 +125,21 @@ void step3()
   bridge.tx("regbot mclear\n");
   event.clearEvents();
 
-    bridge.tx("regbot madd vel=0.5, edger=0.0: dist=0.9\n"); // Drive to the start of the race track
-    bridge.tx("regbot madd vel=1.0, edger=0.0: dist=2.5\n"); // Speed up towards the first corner
-    bridge.tx("regbot madd servo=1, pservo=-550, vservo=0\n"); // Reset the speed to 1 on the long straight strech 
-    bridge.tx("regbot madd vel=1.0, edgel=0.0: dist=2.8\n"); // drive through the goal
-    bridge.tx("regbot madd vel=1.0, edgel=0.0: lv<4\n"); // drive through the goal
+    bridge.tx("regbot madd vel=0.5, edgel=0.0: dist=0.9\n"); // Drive to the start of the race track
+    bridge.tx("regbot madd vel=1.0, edgel=-1.0: dist=2.5\n"); // Speed up towards the first corner
+    bridge.tx("regbot madd servo=1, pservo=-550, vservo=0.2\n"); // Reset the speed to 1 on the long straight strech 
+    bridge.tx("regbot madd vel=1.0, edger=0.0: dist=2.8\n"); // drive through the goal
+    bridge.tx("regbot madd vel=1.0, edger=1.0: lv<6\n"); // drive through the goal
     bridge.tx("regbot madd servo=1, pservo=3000, vservo=0\n"); // Reset the speed to 1 on the long straight strech 
-    bridge.tx("regbot madd vel=0.1, tr=0,: turn=-90\n");
-    bridge.tx("regbot madd vel=0.25:xl>16\n");
+
+    // Intermission
+    bridge.tx("regbot madd vel=0.1, tr=0: turn=-90\n"); 
+    bridge.tx("regbot madd vel=0.25:xl>16\n"); 
+    bridge.tx("regbot madd vel=0.1, tr=0: turn=-90\n"); 
+    bridge.tx("regbot madd vel=0.1, edger=0:ir2 < 0.20\n"); 
+    bridge.tx("regbot madd tr=0,vel=0.25:turn=180\n"); 
+    bridge.tx("regbot madd vel=0.25: dist=0.2\n"); 
+    bridge.tx("regbot madd vel=0.1, tr=0: turn=-90\n")
   // start this mission
   bridge.tx("regbot start\n");
 }

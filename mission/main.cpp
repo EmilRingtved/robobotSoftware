@@ -117,7 +117,7 @@ void step2()
   //continue at a lower speed until a crossing line is registered
   bridge.tx("regbot madd vel=0.35: xl>16\n");
   //turn the robot onto the line
-  bridge.tx("regbot madd tr=0,vel=0.2:turn=90\n");
+  bridge.tx("regbot madd tr=0,vel=0.2:turn=-90\n");
   // start this mission
   bridge.tx("regbot start\n");
   

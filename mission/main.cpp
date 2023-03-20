@@ -74,7 +74,7 @@ void step1()
   // clear events received from last mission
   event.clearEvents();
   // add mission lines
-  bridge.tx("regbot madd vel=0.5, edger=0:dist=2.65\n"); // follow the line to the right until the first challenge
+  bridge.tx("regbot madd vel=0.5, edger=0:dist=2.5\n"); // follow the line to the right until the first challenge
   bridge.tx("regbot madd vel=0:time=1\n"); // wait under the challenge to flex
   bridge.tx("regbot madd vel=0.5, edger=1:time=5\n");  // follow the line to the right until the first turn is complete
   bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.1\n");  // continue until just before the goal post

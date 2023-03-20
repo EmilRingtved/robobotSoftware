@@ -68,7 +68,7 @@ bool setup(int argc, char **argv)
 // Follow the line to the right until the ramp objective has been completed 
 void step1()
 {
-  sound.say(". 17 38. Yah.", 0.3);
+  sound.say(". 17 38. Yah.", 1);
   // remove old mission
   bridge.tx("regbot mclear\n");
   // clear events received from last mission

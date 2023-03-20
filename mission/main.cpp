@@ -76,10 +76,11 @@ void step1()
   // add mission lines
   bridge.tx("regbot madd vel=0.5, edger=0:dist=2.5\n"); // follow the line to the right until the first challenge
   bridge.tx("regbot madd vel=0:time=1\n"); // wait under the challenge to flex
-  bridge.tx("regbot madd vel=0.5, edger=1:time=5\n");  // follow the line to the right until the first turn is complete
-  bridge.tx("regbot madd vel=0.5, edger=2:ir2 < 0.1\n");  // continue until just before the goal post
+  bridge.tx("regbot madd vel=0.5, edgel=1:time=5\n");  // follow the line to the right until the first turn is complete
+  bridge.tx("regbot madd vel=0.5, edgel=2:ir2 < 0.1\n");  // continue until just before the goal post
   bridge.tx("regbot madd tr=0,vel=0.2:turn=180\n"); // turn the robot to face along the line
-  bridge.tx("regbot madd vel=0.25,edger=2:dist=1\n"); // countinue to the line going towards the rotating challenge
+  bridge.tx("regbot madd vel=0:time=1\n"); // wait to flex
+  bridge.tx("regbot madd vel=0.25,edger=1:dist=1\n"); // countinue to the line going towards the rotating challenge
   bridge.tx("regbot madd vel=0.25,edgel=2:xl>10\n"); // countinue to the line going towards the rotating challenge
   bridge.tx("regbot madd tr=0,vel=0.2:turn=-90\n"); // turn onto the path of the rotating challenge
   

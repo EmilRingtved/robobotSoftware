@@ -103,17 +103,15 @@ void step2()
   event.clearEvents();
 
   // Follow the line until the discontinuety in the line
-  bridge.tx("regbot madd vel=0.25,edger=0:dist=0.30\n");
-  //drive 0.6m to overcome the discontinuety 
   bridge.tx("regbot madd vel=0.1,edger=-2:lv<4\n");
   // Turn onto the other line
   bridge.tx("regbot madd tr=0,vel=0.25:turn=-90\n");
   // Drive until the robot is 25cm from the spining disk
-  bridge.tx("regbot madd vel=0.1,edgel=0:ir2 < 0.25\n");
+  bridge.tx("regbot madd vel=0.1,edgel=0:ir2 < 0.15\n");
   // wait until the disk opening is regisered
   bridge.tx("regbot madd vel=0: ir2 > 0.3\n");
   //quickly drive thrugh the gate when its open
-  bridge.tx("regbot madd vel=0.5,edger=0 : time=1\n");
+  bridge.tx("regbot madd vel=0.5,edger=0 : lv<4\n");
   //continue at a lower speed until a crossing line is registered
   bridge.tx("regbot madd vel=0.35: xl>16\n");
   //turn the robot onto the line

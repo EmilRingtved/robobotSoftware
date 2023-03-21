@@ -134,7 +134,7 @@ void step3()
   // start this mission
   bridge.tx("regbot start\n");
 }
-    // Intermission
+    // recalibraation
 void step4()
 {
   bridge.tx("regbot mclear\n");

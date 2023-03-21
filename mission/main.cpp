@@ -146,7 +146,7 @@ void step4()
     bridge.tx("regbot madd vel=0.1, edger=0:ir2 < 0.20\n"); // drive the robot 20cm from the goal post to obtain system percision
     bridge.tx("regbot madd tr=0,vel=0.25:turn=180\n");  // turn the robot around
     bridge.tx("regbot madd vel=0.25: dist=0.2\n"); // drive the robot 20cm further away from the goal post
-    bridge.tx("regbot madd vel=0.1, tr=0: turn=-90\n") // turn the robot towards the tunnel challenge
+    bridge.tx("regbot madd vel=0.1, tr=0: turn=-90\n"); // turn the robot towards the tunnel challenge
   // start this mission
   bridge.tx("regbot start\n");
 }

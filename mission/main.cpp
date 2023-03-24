@@ -163,7 +163,43 @@ void step5()
   bridge.tx("regbot madd vel=0.125: ir1 > 0.10 \n"); // check the side ir sensor on the side to check when the box ends
   bridge.tx("regbot madd vel=0.25,tr=0.5:turn=-180 \n"); // turn into the tunnel ( mind the turning radius has to be tested)
   bridge.tx("regbot madd vel=0.25:ir1 > 0.10 \n"); // Drive through the tunnel and stop when the ir sensor no longer can see the tunnel wall
-
+  /*
+fixed code
+vel=0.25: ir2 < 0.1
+vel=0.0: time=1
+vel=0.1,tr=0:turn=-90
+vel=0.125: ir2 > 0.10
+vel=0.75:dist=0.2
+vel=0.25:dist=0.5
+vel=0.25,tr=0.0:turn=90
+vel=0.25:dist=0.5
+vel=0.25,tr=0.0:turn=90
+vel=0.25: ir2 < 0.1
+vel=0.0: time=1
+vel=0.25:dist=0.5
+vel=0.25,tr=0.0:turn=-90
+vel=0.25: xl > 6
+vel=0.25,tr=0.0:turn=-90
+vel=0.25,edger=0: dist=0.6
+vel=0.25,tr=0.0:turn=-90
+vel=0.25: ir2 < 0.1
+vel=0.25,tr=0.0:turn=90
+vel=0.25:dist=0.5
+vel=0.25,tr=0.0:turn=-90
+vel=0.5: dist=0.2
+vel=0.25: dist=1
+vel=0.25,tr=0.0:turn=-90
+vel=0.25: dist=0.5
+vel=0.25,tr=0.0:turn=90
+vel=0.25: xl > 6
+vel=0.25,tr=0.0:turn=90
+vel=0.1 edger=0: ir2 < 0.1
+vel=0.25,tr=0.0:turn=180
+vel=0.25: 1.1
+vel=0.25,tr=0.0:turn=90
+vel=0.25: xl > 6
+  
+  */
 
   // start this mission
   bridge.tx("regbot start\n");

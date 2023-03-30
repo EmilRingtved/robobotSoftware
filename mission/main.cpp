@@ -196,7 +196,7 @@ void intermissionRotaryChallenge()
   event.clearEvents();
 
   
-  bridge.tx("regbot madd vel=0.25.:time=10\n"); // wait to flex
+  bridge.tx("regbot madd vel=0.25,edger=2:time=15\n"); // wait to flex
   bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.35\n"); // continue until just before the goal post
   bridge.tx("regbot madd tr=0,vel=0.25:turn=180\n"); // turn the robot to face along the line
   bridge.tx("regbot madd vel=0:time=1\n"); // wait to flex

@@ -114,15 +114,17 @@ void rampChallenge()
   bridge.tx("regbot madd vel=0.01,edger=0:lv<4\n"); // slowly drive down the ramp
   bridge.tx("servo=1, pservo=-700, vservo=0:time=1\n")
 
+  // Get to the goal
   bridge.tx("regbot madd vel=0.25:xl>16\n");
   bridge.tx("regbot madd vel=0.1:dist=0.1\n");
   bridge.tx("regbot madd vel=0.1,tr=0:turn=-90\n");
   bridge.tx("regbot madd vel=0.25,edger=0:lv<4\n");
   bridge.tx("regbot madd vel=0.25:lv>4 \n");
-
+  // zero the distance on the goal
   bridge.tx("regbot madd vel=0.25, edger=0:ir2 < 0.35\n");
   bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
   bridge.tx("regbot madd vel=0.25,edgel=2:time=10\n");
+  // drive up the ramp to the post
   bridge.tx("regbot madd vel=0.1,edgel=2:ir1 < 0.30\n");
   bridge.tx("regbot madd servo=1, pservo=-750, vservo=0:time=1\n");
   bridge.tx("regbot madd vel=0.25:dist=0.45\n");

@@ -18,7 +18,16 @@
  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
  FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
- THE SOFTWARE. */
+ THE SOFTWARE. 
+ 
+Flashing guide for the robot, (How to transfer mission code)
+1. acces the robot through ssh at the ip on the robort lcd
+    ssh local@10.197.218.45 
+2. pull the latest updates 
+ 
+ 
+ 
+ */
 
 
 #include <iostream>
@@ -96,14 +105,39 @@ void rampChallenge()
   bridge.tx("regbot madd vel=0.1:dist=0.1\n");
   bridge.tx("regbot madd vel=0.1,tr=0:turn=90\n");
 
-  bridge.tx("regbot madd vel=0.25,edger=2:dist=1\n"); // drive to the ball 
+  bridge.tx("\n")
+  bridge.tx("regbot madd vel=0.25,edger=1:dist=0.2\n"); // catch the line
+  bridge.tx("regbot madd vel=0.25,edger=2:dist=0.8\n"); // drive to the ball 
   bridge.tx("regbot madd servo=1, pservo=-700, vservo=0:time=1\n"); //grab the ball
-  bridge.tx("regbot madd vel=0.1,edger=1:lv<4\n"); // slowly drive down the ramp
+  bridge.tx("regbot madd vel=-0.1:dist=0.165\n");
+  bridge.tx("regbot madd servo=1, pservo=-650, vservo=0:time=1\n")
+  bridge.tx("regbot madd vel=0.01,edger=0:lv<4\n"); // slowly drive down the ramp
+  bridge.tx("servo=1, pservo=-700, vservo=0:time=1\n")
+
   bridge.tx("regbot madd vel=0.25:xl>16\n");
   bridge.tx("regbot madd vel=0.1:dist=0.1\n");
-  bridge.tx("regbot madd vel=0.25,tr=0:turn=-90\n");
-  bridge.tx("regbot madd vel=0.25,edger=1:lv<4\n");
+  bridge.tx("regbot madd vel=0.1,tr=0:turn=-90\n");
+  bridge.tx("regbot madd vel=0.25,edger=0:lv<4\n");
+  bridge.tx("regbot madd vel=0.25:lv>4 \n");
 
+  bridge.tx("regbot madd vel=0.25, edger=0:ir2 < 0.35\n");
+  bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
+  bridge.tx("regbot madd vel=0.25,edgel=2:time=10\n");
+  bridge.tx("regbot madd vel=0.1,edgel=2:ir1 < 0.30\n");
+  bridge.tx("regbot madd servo=1, pservo=-750, vservo=0:time=1\n");
+  bridge.tx("regbot madd vel=0.25:dist=0.45\n");
+
+  bridge.tx("regbot madd servo=1, pservo=-650, vservo=0:time=1\n");
+  bridge.tx("regbot madd label=1,vel=0.05, tr=0: turn=-50\n");
+  bridge.tx("regbot madd vel=0.1, tr=0: turn=50\n");
+  bridge.tx("regbot madd vel=0.1, tr=0: turn=50\n");
+  bridge.tx("regbot madd vel=0.1, tr=0: turn=-50\n");
+  bridge.tx("regbot madd vel=0.1:dist=0.05\n");
+  bridge.tx("regbot madd goto=1 : count = 2\n");
+
+  bridge.tx("regbot madd servo=1, pservo=2000, vservo=0:time=1\n");
+  bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
+  bridge.tx("regbot madd vel=0.1:lv>4\n");
 
 /*
 servo=1, pservo=2000, vservo=0:time=1
@@ -156,16 +190,19 @@ void intermissionRotaryChallenge()
   // clear events received from last mission
   event.clearEvents();
 
-  bridge.tx("regbot madd vel=0.5, edger=2:ir2 < 0.20\n"); // continue until just before the goal post
+  bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.35\n"); // continue until just before the goal post
   bridge.tx("regbot madd tr=0,vel=0.25:turn=180\n"); // turn the robot to face along the line
   bridge.tx("regbot madd vel=0:time=1\n"); // wait to flex
-  bridge.tx("regbot madd vel=0.25,edger=1:dist=1.25\n"); // countinue to the line going towards the rotating challenge
-  bridge.tx("regbot madd vel=0.25,edger=2:xl>6\n"); // countinue to the line going towards the rotating challenge
-  bridge.tx("regbot madd tr=0.05,vel=0.25:turn=-90\n"); // turn onto the path of the rotating challenge
+  bridge.tx("regbot madd vel=0.25,edger=-1:dist=1.25\n"); // countinue to the line going towards the rotating challenge
+  bridge.tx("regbot madd vel=0.25,edger=-2:xl>6\n"); // countinue to the line going towards the rotating challenge
+  bridge.tx("vel=0.1:dist=0.1\n"); // drive a little past the line so that the robot turns onto the track
+  bridge.tx("regbot madd tr=0,vel=0.25:turn=-90\n"); // turn onto the path of the rotating challenge
 
   bridge.tx("regbot start\n");
   event.waitForEvent(0);
+
   /*
+  code for GUI test
   vel=0.25, edger=0:ir2 < 0.35
   tr=0,vel=0.25:turn=180
   vel=0:time=1
@@ -296,10 +333,11 @@ void tunnelChallenge()
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=90\n"); //
   bridge.tx("regbot madd vel=0.1, edger=0: ir2 < 0.1\n"); //
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=180\n"); //
-  bridge.tx("regbot madd vel=0.25: dist=1.1\n"); //
-  bridge.tx("regbot madd vel=0.25,tr=0.0:turn=90\n"); //
-  bridge.tx("regbot madd vel=0.25: xl > 6\n"); //
-
+  bridge.tx("regbot madd vel=0.25: dist=0.75\n");
+  bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-90\n");
+  bridge.tx("regbot madd vel=0.25: xl > 6\n");
+  bridge.tx("regbot madd vel=0.25:dist=0.1\n");
+  bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-90\n");
 
   /*
 fixed code
@@ -359,6 +397,16 @@ void goalChallenge()
 {
   bridge.tx("regbot mclear\n");
   event.clearEvents();
+
+  bridge.tx("regbot madd servo=1, pservo=3000, vservo=0:time=1\n");
+  bridge.tx("regbot madd vel=0.5,edger=0:lv<4\n");
+  bridge.tx("regbot madd vel=0.5,tr=0.25:turn=-90\n");
+  bridge.tx("regbot madd vel=0.5:xl>16\n");
+  bridge.tx("regbot madd vel=0.5,tr=0.25:turn=-90\n");
+  bridge.tx("regbot madd servo=1, pservo=-650, vservo=0:time=1\n");
+  bridge.tx("regbot madd vel=0.5,edger=0:ir<20\n");
+
+  bridge.tx("regbot start\n");
   /*
   servo=1, pservo=3000, vservo=0:time=1
 vel=0.5,edger=0:lv<4
@@ -369,7 +417,7 @@ servo=1, pservo=-650, vservo=0:time=1
 vel=0.5,edger=0:ir<20
   */
 
-  bridge.tx("regbot start\n");
+
 }
 
 int main(int argc, char **argv) 

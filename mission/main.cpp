@@ -101,6 +101,7 @@ void seesawChallenge()
   sound.say("And I can ride with my baby. I just left the mall, I'm getting fly with my baby, yeah.", 1);
   // remove old mission
   bridge.tx("regbot mclear\n");
+  event.clearEvents();
   // clear events received from last mission
   bridge.tx("regbot madd servo=1, pservo=2000, vservo=0:time=1\n");
   bridge.tx("regbot madd vel=0.25,edgel=2:xl > 16\n");
@@ -184,7 +185,8 @@ vel=0.1:lv>4
 */
    // start this mission
   bridge.tx("regbot start\n");
-  event.clearEvents();
+  event.waitForEvent(0);
+
 }
 
 void intermissionRotaryChallenge()

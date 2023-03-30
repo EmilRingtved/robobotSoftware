@@ -94,7 +94,7 @@ void gillutineChallenge()
   event.waitForEvent(0);
 //   sound.say(". Step one finished.");
 }
-void rampChallenge()
+void seesawChallenge()
 {
   sound.say(". seventeen thirtyeight. Yah.", 1);
   // remove old mission
@@ -105,14 +105,13 @@ void rampChallenge()
   bridge.tx("regbot madd vel=0.1:dist=0.1\n");
   bridge.tx("regbot madd vel=0.1,tr=0:turn=90\n");
 
-  bridge.tx("\n")
   bridge.tx("regbot madd vel=0.25,edger=1:dist=0.2\n"); // catch the line
   bridge.tx("regbot madd vel=0.25,edger=2:dist=0.8\n"); // drive to the ball 
   bridge.tx("regbot madd servo=1, pservo=-700, vservo=0:time=1\n"); //grab the ball
   bridge.tx("regbot madd vel=-0.1:dist=0.165\n");
-  bridge.tx("regbot madd servo=1, pservo=-650, vservo=0:time=1\n")
+  bridge.tx("regbot madd servo=1, pservo=-650, vservo=0:time=1\n");
   bridge.tx("regbot madd vel=0.01,edger=0:lv<4\n"); // slowly drive down the ramp
-  bridge.tx("servo=1, pservo=-700, vservo=0:time=1\n")
+  bridge.tx("servo=1, pservo=-700, vservo=0:time=1\n");
 
   // Get to the goal
   bridge.tx("regbot madd vel=0.25:xl>16\n");

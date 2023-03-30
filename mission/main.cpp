@@ -318,7 +318,7 @@ void tunnelChallenge()
   bridge.tx("regbot madd vel=0.25: xl > 6\n"); //
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-90\n"); //
   bridge.tx("refbot madd vel=0.25,edger=0: dist=0.6\n"); //
-  bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-90\n") //
+  bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-90\n"); //
 
   bridge.tx("regbot madd vel=0.25: ir2 < 0.1\n"); //
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=90\n"); //

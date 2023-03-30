@@ -140,7 +140,7 @@ void seesawChallenge()
   bridge.tx("regbot madd goto=1 : count = 1s\n");
 
   bridge.tx("regbot madd servo=1, pservo=2000, vservo=0:time=1\n");
-  bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
+  bridge.tx("regbot madd vel=0.1,tr=0:turn=-180\n");
   bridge.tx("regbot madd vel=0.1:lv>4\n");
 
 /*

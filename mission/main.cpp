@@ -137,7 +137,7 @@ void seesawChallenge()
   bridge.tx("regbot madd vel=0.1, tr=0: turn=50\n");
   bridge.tx("regbot madd vel=0.1, tr=0: turn=-50\n");
   bridge.tx("regbot madd vel=0.1:dist=0.05\n");
-  bridge.tx("regbot madd goto=1 : count = 2\n");
+  bridge.tx("regbot madd goto=1 : count = 1s\n");
 
   bridge.tx("regbot madd servo=1, pservo=2000, vservo=0:time=1\n");
   bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
@@ -195,6 +195,8 @@ void intermissionRotaryChallenge()
   // clear events received from last mission
   event.clearEvents();
 
+  
+  bridge.tx("regbot madd vel=0.25.:time=10\n"); // wait to flex
   bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.35\n"); // continue until just before the goal post
   bridge.tx("regbot madd tr=0,vel=0.25:turn=180\n"); // turn the robot to face along the line
   bridge.tx("regbot madd vel=0:time=1\n"); // wait to flex

@@ -86,7 +86,7 @@ void gillutineChallenge()
 
   bridge.tx("regbot madd vel=0.5, edger=0:dist=2.5\n"); // follow the line to the right until the gillutine challenge
   bridge.tx("regbot madd vel=0:time=1\n"); // wait under the challenge to flex
-  bridge.tx("regbot madd vel=0.25,edger=-1:time=1\n"); 
+  bridge.tx("regbot madd vel=0.25,edger=-1:time=5\n"); 
   bridge.tx("regbot madd vel=0.25,edger=0:time=1\n"); 
   
   // start this mission

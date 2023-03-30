@@ -77,12 +77,13 @@ bool setup(int argc, char **argv)
 // Follow the line to the right until the ramp objective
 void gillutineChallenge()
 {
-  sound.say(". seventeen thirtyeight. Yah.", 1);
+  sound.say("seventeen thirtyeight. Yah.", 1);
   // remove old mission
   bridge.tx("regbot mclear\n");
   // clear events received from last mission
   event.clearEvents();
   // add mission lines
+
   bridge.tx("regbot madd vel=0.5, edger=0:dist=2.5\n"); // follow the line to the right until the gillutine challenge
   bridge.tx("regbot madd vel=0:time=1\n"); // wait under the challenge to flex
   bridge.tx("regbot madd vel=0.5, edger=-1:xl>6\n");  // follow the line to the right until the seesaw
@@ -96,7 +97,7 @@ void gillutineChallenge()
 }
 void seesawChallenge()
 {
-  sound.say(". seventeen thirtyeight. Yah.", 1);
+  sound.say("And I can ride with my baby. I just left the mall, I'm getting fly with my baby, yeah.", 1);
   // remove old mission
   bridge.tx("regbot mclear\n");
   // clear events received from last mission

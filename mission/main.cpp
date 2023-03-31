@@ -19,14 +19,48 @@
  FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
  THE SOFTWARE. 
+
+   __ _           _     _                           _     _      
+ / _| |         | |   (_)                         (_)   | |     
+| |_| | __ _ ___| |__  _ _ __   __ _    __ _ _   _ _  __| | ___ 
+|  _| |/ _` / __| '_ \| | '_ \ / _` |  / _` | | | | |/ _` |/ _ \
+| | | | (_| \__ \ | | | | | | | (_| | | (_| | |_| | | (_| |  __/
+|_| |_|\__,_|___/_| |_|_|_| |_|\__, |  \__, |\__,_|_|\__,_|\___|
+                                __/ |   __/ |                   
+                               |___/   |___/  
  
-Flashing guide for the robot, (How to transfer mission code)
-1. acces the robot through ssh at the ip on the robort lcd
-    ssh local@10.197.218.45 
-2. pull the latest updates 
- 
- 
- 
+1. Acces the robot through ssh at the ip on the robort lcd
+  ssh local@10.197.218.45 
+  password: grenen
+2. Pull the latest updates 
+  cd git
+  cd robobotSoftware
+  git pull
+3. update the make file 
+  cd mission
+  cd build
+  cmake ..
+  make -j3
+  now the mission can be run using the command 
+  ./mission
+
+To run the robot using the controller:
+1. copy the mission folder to the home folder
+   mv -f ~/git/robobotSoftware/mission ~/mission/
+2. if a mission folder is present in the home folder, remove it first
+   rmdir -r /mission
+3. update the make file 
+  cd mission
+  cd build
+  cmake ..
+  make -j3
+  now the mission can be run using the controller (the cross button)
+
+If the files have been moved out of the git folder and new files need to be pulled
+stash any local changes and pull again, never commit changes made on the robot.
+  cd git/robobotSoftware
+  git stash
+  git pull  
  */
 
 
@@ -77,7 +111,7 @@ bool setup(int argc, char **argv)
 // Follow the line to the right until the ramp objective
 void gillutineChallenge()
 {
-  sound.say("seventeen thirtyeight. Yah.", 1);
+  sound.say("seventeen thirtyeight. Yah.", 0.75);
   // remove old mission
   bridge.tx("regbot mclear\n");
   // clear events received from last mission
@@ -98,7 +132,7 @@ void gillutineChallenge()
 }
 void seesawChallenge()
 {
-  sound.say("And I can ride with my baby. I just left the mall, I'm getting fly with my baby, yeah.", 1);
+  sound.say("And I can ride with my baby. I just left the mall, I'm getting fly with my baby, yeah.", 0.75);
   // remove old mission
   bridge.tx("regbot mclear\n");
   event.clearEvents();
@@ -114,7 +148,7 @@ void seesawChallenge()
   bridge.tx("regbot madd vel=-0.1:dist=0.165\n");
   bridge.tx("regbot madd servo=1, pservo=-650, vservo=0:time=1\n");
   bridge.tx("regbot madd vel=0.01,edger=0:lv<4\n"); // slowly drive down the ramp
-  bridge.tx("servo=1, pservo=-700, vservo=0:time=1\n");
+  bridge.tx("servo=1, pservo=-700, vservo=0:time=1\n"); // slightly raise arm to brace for impact
 
   // Get to the goal
   bridge.tx("regbot madd vel=0.25:xl>16\n");
@@ -122,14 +156,17 @@ void seesawChallenge()
   bridge.tx("regbot madd vel=0.1,tr=0:turn=-90\n");
   bridge.tx("regbot madd vel=0.25,edger=0:lv<4\n");
   bridge.tx("regbot madd vel=0.25:lv>4 \n");
+
   // zero the distance on the goal
-  bridge.tx("regbot madd vel=0.25, edger=0:ir2 < 0.35\n");
+  bridge.tx("regbot madd vel=0.25, edger=0:ir2 < 0.15\n");
   bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
   bridge.tx("regbot madd vel=0.25,edgel=2:time=10\n");
+
   // drive up the ramp to the post
   bridge.tx("regbot madd vel=0.1,edgel=2:ir1 < 0.30\n");
   bridge.tx("regbot madd servo=1, pservo=-750, vservo=0:time=1\n");
   bridge.tx("regbot madd vel=0.25:dist=0.45\n");
+
 
   bridge.tx("regbot madd servo=1, pservo=-650, vservo=0:time=1\n");
   bridge.tx("regbot madd label=1,vel=0.05, tr=0: turn=-50\n");
@@ -163,7 +200,7 @@ vel=0.1,tr=0:turn=-90
 vel=0.25,edger=0:lv<4
 vel=0.25:lv>4
 
-vel=0.25, edger=0:ir2 < 0.35
+vel=0.25, edger=0:ir2 < 0.15
 vel=0.1,tr=0:turn=180
 vel=0.25,edgel=2:time=10
 vel=0.1,edgel=2:ir1 < 0.30
@@ -197,7 +234,7 @@ void intermissionRotaryChallenge()
 
   
   bridge.tx("regbot madd vel=0.25,edger=2:time=15\n"); // wait to flex
-  bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.35\n"); // continue until just before the goal post
+  bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.15\n"); // continue until just before the goal post
   bridge.tx("regbot madd tr=0,vel=0.25:turn=180\n"); // turn the robot to face along the line
   bridge.tx("regbot madd vel=0:time=1\n"); // wait to flex
   bridge.tx("regbot madd vel=0.25,edger=-1:dist=1.25\n"); // countinue to the line going towards the rotating challenge
@@ -210,7 +247,7 @@ void intermissionRotaryChallenge()
 
   /*
   code for GUI test
-  vel=0.25, edger=0:ir2 < 0.35
+  vel=0.25, edger=0:ir2 < 0.15
   tr=0,vel=0.25:turn=180
   vel=0:time=1
   vel=0.25,edger=-1:dist=1.25

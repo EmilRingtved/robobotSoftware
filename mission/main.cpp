@@ -238,7 +238,7 @@ void intermissionRotaryChallenge()
   bridge.tx("regbot madd tr=0,vel=0.25:turn=180\n"); // turn the robot to face along the line
   bridge.tx("regbot madd vel=0:time=1\n"); // wait to flex
   bridge.tx("regbot madd vel=0.25,edger=-1:dist=1.25\n"); // countinue to the line going towards the rotating challenge
-  bridge.tx("regbot madd vel=0.25,edger=-2:xl>6\n"); // countinue to the line going towards the rotating challenge
+  bridge.tx("regbot madd vel=0.25,edger=-2:xl>10\n"); // countinue to the line going towards the rotating challenge
   bridge.tx("vel=0.1:dist=0.1\n"); // drive a little past the line so that the robot turns onto the track
   bridge.tx("regbot madd tr=0,vel=0.25:turn=-90\n"); // turn onto the path of the rotating challenge
 
@@ -265,7 +265,7 @@ void rotaryChallenge()
   // clear events received from last mission
   event.clearEvents();
 
-  bridge.tx("regbot madd vel=0.1,edger=-2:lv<4\n"); // Follow the line until the discontinuety in the line
+  bridge.tx("regbot madd vel=0.1,edger=1:lv<4\n"); // Follow the line until the discontinuety in the line
   bridge.tx("regbot madd tr=0.1,vel=0.25:turn=-90\n");  // Turn onto the other line
   bridge.tx("regbot madd vel=0.05,edgel=0:ir2 < 0.2\n");// Drive until the robot is 25cm from the spining disk
   bridge.tx("regbot madd vel=0: ir2 > 0.5\n");  // wait until the disk opening is regisered
@@ -276,8 +276,8 @@ void rotaryChallenge()
   bridge.tx("regbot start\n");// start this mission
   
   /*
-  vel=0.1,edger=-2:lv<4
-  tr=0.1,vel=0.25:turn=-90
+  vel=0.1,edger=1:lv<4
+  tr=0.1,vel=0.15:turn=-90
   vel=0.05,edgel=0:ir2 < 0.2
   vel=0: ir2 > 0.5
   vel=0: time=0.5
@@ -297,7 +297,7 @@ void speedChallenge()
     bridge.tx("regbot madd vel=1.0, edgel=-1.0: dist=2.5\n"); // Speed up towards the first corner
     bridge.tx("regbot madd servo=1, pservo=-550, vservo=0.2\n"); // Reset the speed to 1 on the long straight strech 
     bridge.tx("regbot madd vel=1.0, edger=0.0: dist=2.8\n"); // drive through the goal
-    bridge.tx("regbot madd vel=1.0, edger=1.0: lv<6\n"); // drive through the goal
+    bridge.tx("regbot madd vel=1.0, edger=1.0: lv<10\n"); // drive through the goal
     bridge.tx("regbot madd servo=1, pservo=3000, vservo=0\n"); // Reset the speed to 1 on the long straight strech 
   // start this mission
   bridge.tx("regbot start\n");
@@ -316,7 +316,7 @@ void intermissionTunelChallenge()
 {
   bridge.tx("regbot mclear\n");
   event.clearEvents();
-
+    bridge.tx("regbot madd vel=0.1:dist=0.5\n"); // drive a bit forward to get more line at the goal post
     bridge.tx("regbot madd vel=0.1, tr=0: turn=-90\n"); // Turn the robot towards the tunnel challenge
     bridge.tx("regbot madd vel=0.25:xl>16\n");  // Drive the robot forward to the first crossing line
     bridge.tx("regbot madd vel=0.1, tr=0: turn=-90\n"); // turn the robot towards the goal
@@ -328,12 +328,13 @@ void intermissionTunelChallenge()
   bridge.tx("regbot start\n");
 
   /*
+  vel=0.1:dist=0.25
   vel=0.1, tr=0: turn=-90
   vel=0.25:xl>16
   vel=0.1, tr=0: turn=-90
   vel=0.1, edger=0:ir2 < 0.20
   tr=0,vel=0.25:turn=180
-  vel=0.25: dist=0.2
+  vel=0.1,edger=0: dist=0.1
   vel=0.1, tr=0: turn=-90
   */
 }
@@ -347,18 +348,24 @@ void tunnelChallenge()
   bridge.tx("regbot madd vel=0.25: ir2 < 0.10 \n"); // drive until the side of the tunnel challenge 
   bridge.tx("regbot madd vel=0.0: time=1 \n"); // wait for one second
   bridge.tx("regbot madd vel=0.1,tr=0:turn=-90 \n"); // turn towards the gate opening
+  bridge.tx("regbot madd vel=-0.25:ir1 > 0.5\n");
+  bridge.tx("regbot madd vel=0.1,tr=0:turn=10\n");
+  bridge.tx("regbot madd vel=0.2:dist=0.5\n");
+  bridge.tx("regbot madd vel=0.1,tr=0:turn=-10\n");
   bridge.tx("regbot madd vel=0.125: ir2 > 0.10 \n"); //
-  bridge.tx("regbot madd vel=0.75:dist=0.2\n"); // 
+
+  bridge.tx("regbot madd vel=0.5:dist=0.2\n"); // 
   bridge.tx("regbot madd vel=0.25:dist=0.5 \n"); //
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=90\n"); //
-  bridge.tx("regbot madd vel=0.25:dist=0.5\n"); //
-  bridge.tx("regbot madd vel=0.25,tr=0.0:turn=90\n"); //
+  bridge.tx("regbot madd vel=0.25:dist=0.45\n"); //
+  bridge.tx("regbot madd vel=0.25,tr=0.0:turn=97\n"); //
   bridge.tx("regbot madd vel=0.25: ir2 < 0.1\n"); //
   bridge.tx("regbot madd vel=0.0: time=1\n"); //
 
-  bridge.tx("regbot madd vel=0.25:dist=0.5\n"); //
-  bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-90\n"); //
+  bridge.tx("regbot madd vel=0.25:dist=0.6\n"); //
+  bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-97\n"); //
   bridge.tx("regbot madd vel=0.25: xl > 6\n"); //
+  bridge.tx("regbot madd vel=0.25:dist=0.1")
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-90\n"); //
   bridge.tx("refbot madd vel=0.25,edger=0: dist=0.6\n"); //
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-90\n"); //
@@ -371,7 +378,7 @@ void tunnelChallenge()
   bridge.tx("regbot madd vel=0.25: dist=1\n"); //
 
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-90\n"); //
-  bridge.tx("regbot madd vel=0.25: dist=0.5\n"); //
+  bridge.tx("regbot madd vel=0.25: dist=1\n"); //
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=90\n"); //
   bridge.tx("regbot madd vel=0.25: xl > 6\n"); //
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=90\n"); //

@@ -143,7 +143,7 @@ void seesawChallenge()
   bridge.tx("regbot madd vel=0.1,tr=0:turn=90\n");
 
   bridge.tx("regbot madd vel=0.25,edger=1:dist=0.2\n"); // catch the line
-  bridge.tx("regbot madd vel=0.25,edger=2:dist=0.8\n"); // drive to the ball - changed dist from 0.8 to 0.85 
+  bridge.tx("regbot madd vel=0.25,edger=2:dist=0.85\n"); // drive to the ball - changed dist from 0.8 to 0.85 
   bridge.tx("regbot madd servo=1, pservo=-700, vservo=0:time=1\n"); //grab the ball
   bridge.tx("regbot madd vel=-0.1:dist=0.165\n");
   bridge.tx("regbot madd servo=1, pservo=-650, vservo=0:time=1\n");
@@ -365,7 +365,7 @@ void tunnelChallenge()
   bridge.tx("regbot madd vel=0.25:dist=0.6\n"); //
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-97\n"); //
   bridge.tx("regbot madd vel=0.25: xl > 6\n"); //
-  bridge.tx("regbot madd vel=0.25:dist=0.1")
+  bridge.tx("regbot madd vel=0.25:dist=0.1");
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-90\n"); //
   bridge.tx("refbot madd vel=0.25,edger=0: dist=0.6\n"); //
   bridge.tx("regbot madd vel=0.25,tr=0.0:turn=-90\n"); //

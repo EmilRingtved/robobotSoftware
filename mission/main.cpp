@@ -50,6 +50,7 @@ To run the robot using the controller:
 2. if a mission folder is present in the home folder, remove it first
    rmdir -r /mission
 3. update the make file 
+
   cd mission
   cd build
   cmake ..
@@ -132,7 +133,7 @@ void gillutineChallenge()
 }
 void seesawChallenge()
 {
-  sound.say("And I can ride with my baby. I just left the mall, I'm getting fly with my baby, yeah.", 0.75);
+  //sound.say("And I can ride with my baby. I just left the mall, I'm getting fly with my baby, yeah.", 0.75);
   // remove old mission
   bridge.tx("regbot mclear\n");
   event.clearEvents();

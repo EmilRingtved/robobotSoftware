@@ -66,7 +66,7 @@ stash any local changes and pull again, never commit changes made on the robot.
 
  /*
   Tested and finished:
-    Guillotine, Seesaw (Doesnt stop before goal (maybe use driving dist), and get the ball in the hole)
+    Guillotine, Seesaw (turn back on line after goal cal. get the ball in the hole)
   To be tested:
     Intermission 1 (adjust turn to hit line), Rotary, Speed, Intermission 2, Tunnel, Goal
  */
@@ -170,7 +170,8 @@ void seesawChallenge()
 
   // zero the distance on the goal
   bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.15\n"); // change from edger=0 to edger=2 - now it stops too early
-  bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
+  //bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
+  bridge.tx("regbot madd tr=0,vel=0.25:turn=180\n"); // try this turn instead
   bridge.tx("regbot madd vel=0.25,edgel=2:time=10\n");
 
 

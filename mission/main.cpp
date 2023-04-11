@@ -65,10 +65,25 @@ stash any local changes and pull again, never commit changes made on the robot.
  */
 
  /*
-  Tested and finished:
-    Guillotine, Seesaw (turn back on line after goal cal. get the ball in the hole)
+  Tested:
+    Guillotine
+    Seesaw 
+      - robot sometimes misses the line on the ramp when turning
+      - ball is not caught correctly, needs tuning
+      - drives too far when delivering ball, attempted fix is dist=50 (not tested yet)
+    Intermission 1
+      - the turn needs to be adjusted so the robot hits the line before rotating gate
+      - attempted fix is to increase driving length before turn from 10 to 15 cm (not tested yet)
   To be tested:
-    Intermission 1 (adjust turn to hit line), Rotary, Speed, Intermission 2, Tunnel, Goal
+    Rotary
+      - not expected to need tuning
+    Speed
+     - not expected to need tuning
+    Intermission 2
+      - tuned together with tunnel challenge
+    Tunnel
+      - probably needs tuning
+    Goal
  */
 
 
@@ -169,7 +184,7 @@ void seesawChallenge()
   // perhaps we could just tune it by driving a certain distance from the crossed line?
 
   // zero the distance on the goal
-  bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.15\n"); // change from edger=0 to edger=2 - now it stops too early
+  bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.15\n"); // change from edger=0 to edger=2
   //bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
   bridge.tx("regbot madd tr=0,vel=0.25:turn=180\n"); // try this turn instead
   bridge.tx("regbot madd vel=0.25,edgel=2:time=10\n");
@@ -178,7 +193,7 @@ void seesawChallenge()
   // drive up the ramp to the post
   bridge.tx("regbot madd vel=0.1,edgel=2:ir1 < 0.30\n");
   bridge.tx("regbot madd servo=1, pservo=-750, vservo=0:time=1\n");
-  bridge.tx("regbot madd vel=0.25:dist=0.53\n"); 
+  bridge.tx("regbot madd vel=0.25:dist=0.50\n"); 
   // in order to get the ball in the hole, dist is increased from 0.45
   // otherwise try with an extra iteration and 0.45
 
@@ -255,7 +270,7 @@ void intermissionRotaryChallenge()
   bridge.tx("regbot madd vel=0:time=1\n"); // wait to flex
   bridge.tx("regbot madd vel=0.25,edger=-1:dist=1.25\n"); // countinue to the line going towards the rotating challenge
   bridge.tx("regbot madd vel=0.25,edger=-2:xl>10\n"); // countinue to the line going towards the rotating challenge
-  bridge.tx("vel=0.1:dist=0.1\n"); // drive a little past the line so that the robot turns onto the track
+  bridge.tx("vel=0.1:dist=0.15\n"); // drive a little past the line so that the robot turns onto the track
   bridge.tx("regbot madd tr=0,vel=0.25:turn=-90\n"); // turn onto the path of the rotating challenge
   // in order to make sure it catches the line; either decrease turning angle from 90 or increase dist before turn from 0.1
 

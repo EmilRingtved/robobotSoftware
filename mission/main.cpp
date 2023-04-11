@@ -64,6 +64,13 @@ stash any local changes and pull again, never commit changes made on the robot.
   git pull  
  */
 
+ /*
+  Tested and finished:
+    Guillotine, Seesaw (make sure it doesnt touch goal, and get the ball in the hole)
+  To be tested:
+    Intermission 1 (adjust turn to hit line), Rotary, Speed, Intermission 2, Tunnel, Goal
+ */
+
 
 #include <iostream>
 #include "src/ubridge.h"

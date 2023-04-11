@@ -162,11 +162,14 @@ void seesawChallenge()
   bridge.tx("regbot madd vel=0.25:xl>16\n");
   bridge.tx("regbot madd vel=0.1:dist=0.1\n");
   bridge.tx("regbot madd vel=0.1,tr=0:turn=-90\n");
-  bridge.tx("regbot madd vel=0.25,edger=0:lv<4\n");
-  bridge.tx("regbot madd vel=0.25:lv>4 \n");
+  bridge.tx("regbot madd vel=0.25,edger=2:lv<4\n"); // edger 0 -> 2
+  bridge.tx("regbot madd vel=0.25:lv>4 \n"); 
+
+  // attempted fix: change edger from 0 to 2 in line above
+  // perhaps we could just tune it by driving a certain distance from the crossed line?
 
   // zero the distance on the goal
-  bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.15\n"); // change from edger=0 to edger=2
+  bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.15\n"); // change from edger=0 to edger=2 - now it stops too early
   bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
   bridge.tx("regbot madd vel=0.25,edgel=2:time=10\n");
 

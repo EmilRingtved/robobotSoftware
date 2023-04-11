@@ -55,7 +55,7 @@ To run the robot using the controller:
   cd build
   cmake ..
   make -j3
-  now the mission can be run using the controller (the cross button) or ./mission
+  now the mission can be run using the controller (the cross button)
 
 If the files have been moved out of the git folder and new files need to be pulled
 stash any local changes and pull again, never commit changes made on the robot.
@@ -166,15 +166,16 @@ void seesawChallenge()
   bridge.tx("regbot madd vel=0.25:lv>4 \n");
 
   // zero the distance on the goal
-  bridge.tx("regbot madd vel=0.25, edger=0:ir2 < 0.15\n");
+  bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.15\n"); // change from edger=0 to edger=2
   bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
   bridge.tx("regbot madd vel=0.25,edgel=2:time=10\n");
+
 
   // drive up the ramp to the post
   bridge.tx("regbot madd vel=0.1,edgel=2:ir1 < 0.30\n");
   bridge.tx("regbot madd servo=1, pservo=-750, vservo=0:time=1\n");
-  bridge.tx("regbot madd vel=0.25:dist=0.48\n"); 
-  // in order to get the ball in the hole, dist is changed from 0.45 to 0.48
+  bridge.tx("regbot madd vel=0.25:dist=0.53\n"); 
+  // in order to get the ball in the hole, dist is increased from 0.45
   // otherwise try with an extra iteration and 0.45
 
 
@@ -251,8 +252,8 @@ void intermissionRotaryChallenge()
   bridge.tx("regbot madd vel=0.25,edger=-1:dist=1.25\n"); // countinue to the line going towards the rotating challenge
   bridge.tx("regbot madd vel=0.25,edger=-2:xl>10\n"); // countinue to the line going towards the rotating challenge
   bridge.tx("vel=0.1:dist=0.1\n"); // drive a little past the line so that the robot turns onto the track
-  bridge.tx("regbot madd tr=0,vel=0.25:turn=-87\n"); // turn onto the path of the rotating challenge
-  // turn is changes from -90 to -87 to ensure that the robot catches the line
+  bridge.tx("regbot madd tr=0,vel=0.25:turn=-90\n"); // turn onto the path of the rotating challenge
+  // in order to make sure it catches the line; either decrease turning angle from 90 or increase dist before turn from 0.1
 
   bridge.tx("regbot start\n");
   event.waitForEvent(0);

@@ -55,7 +55,7 @@ To run the robot using the controller:
   cd build
   cmake ..
   make -j3
-  now the mission can be run using the controller (the cross button)
+  now the mission can be run using the controller (the cross button) or ./mission
 
 If the files have been moved out of the git folder and new files need to be pulled
 stash any local changes and pull again, never commit changes made on the robot.
@@ -66,7 +66,7 @@ stash any local changes and pull again, never commit changes made on the robot.
 
  /*
   Tested and finished:
-    Guillotine, Seesaw (make sure it doesnt touch goal, and get the ball in the hole)
+    Guillotine, Seesaw (Doesnt stop before goal (maybe use driving dist), and get the ball in the hole)
   To be tested:
     Intermission 1 (adjust turn to hit line), Rotary, Speed, Intermission 2, Tunnel, Goal
  */
@@ -173,7 +173,7 @@ void seesawChallenge()
   // drive up the ramp to the post
   bridge.tx("regbot madd vel=0.1,edgel=2:ir1 < 0.30\n");
   bridge.tx("regbot madd servo=1, pservo=-750, vservo=0:time=1\n");
-  bridge.tx("regbot madd vel=0.25:dist=0.45\n"); 
+  bridge.tx("regbot madd vel=0.25:dist=0.48\n"); 
   // in order to get the ball in the hole, dist is changed from 0.45 to 0.48
   // otherwise try with an extra iteration and 0.45
 

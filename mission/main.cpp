@@ -166,7 +166,9 @@ void seesawChallenge()
   // drive up the ramp to the post
   bridge.tx("regbot madd vel=0.1,edgel=2:ir1 < 0.30\n");
   bridge.tx("regbot madd servo=1, pservo=-750, vservo=0:time=1\n");
-  bridge.tx("regbot madd vel=0.25:dist=0.45\n");
+  bridge.tx("regbot madd vel=0.25:dist=0.45\n"); 
+  // in order to get the ball in the hole, dist is changed from 0.45 to 0.48
+  // otherwise try with an extra iteration and 0.45
 
 
   bridge.tx("regbot madd servo=1, pservo=-650, vservo=0:time=1\n");
@@ -176,7 +178,6 @@ void seesawChallenge()
   bridge.tx("regbot madd vel=0.1, tr=0: turn=-50\n");
   bridge.tx("regbot madd vel=0.1:dist=0.05\n");
   bridge.tx("regbot madd goto=1 : count = 1s\n");
-  // To do: the robot should do at least one more iteration here, to get the ball in the hole.
 
 
   bridge.tx("regbot madd servo=1, pservo=2000, vservo=0:time=1\n");
@@ -243,9 +244,8 @@ void intermissionRotaryChallenge()
   bridge.tx("regbot madd vel=0.25,edger=-1:dist=1.25\n"); // countinue to the line going towards the rotating challenge
   bridge.tx("regbot madd vel=0.25,edger=-2:xl>10\n"); // countinue to the line going towards the rotating challenge
   bridge.tx("vel=0.1:dist=0.1\n"); // drive a little past the line so that the robot turns onto the track
-  bridge.tx("regbot madd tr=0,vel=0.25:turn=-90\n"); // turn onto the path of the rotating challenge
-
-  // To do: perhaps turn a little bit less than 90? looks like the robot cant find the line after saying "trap queen"
+  bridge.tx("regbot madd tr=0,vel=0.25:turn=-87\n"); // turn onto the path of the rotating challenge
+  // turn is changes from -90 to -87 to ensure that the robot catches the line
 
   bridge.tx("regbot start\n");
   event.waitForEvent(0);

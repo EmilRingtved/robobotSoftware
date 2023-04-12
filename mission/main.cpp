@@ -184,7 +184,7 @@ void seesawChallenge()
   // perhaps we could just tune it by driving a certain distance from the crossed line?
 
   // zero the distance on the goal
-  bridge.tx("regbot madd vel=0.1, edger=0:ir2 < 0.3\n"); // change from edger=0 to edger=2? and lower speed - increase from 0.15 to 0.3
+  bridge.tx("regbot madd vel=0.1, edger=0:ir2 < 0.35\n"); // change from edger=0 to edger=2? and lower speed - increase from 0.15 to 0.3
   //bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
   bridge.tx("regbot madd tr=0,vel=0.1:turn=180\n"); // try this turn instead
   bridge.tx("regbot madd vel=0.25,edgel=2:time=10\n");

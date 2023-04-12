@@ -180,13 +180,12 @@ void seesawChallenge()
   bridge.tx("regbot madd vel=0.25,edger=0:lv<4\n"); // edger 0 -> 2?
   bridge.tx("regbot madd vel=0.25:lv>4 \n"); 
 
-  // attempted fix: change edger from 0 to 2 in line above
-  // perhaps we could just tune it by driving a certain distance from the crossed line?
+  // 12. apr: the robot turns after crossing the crossing point before goal - try to change to edgel??
 
   // zero the distance on the goal
-  bridge.tx("regbot madd vel=0.1, edger=0:ir2 < 0.25\n"); // change from edger=0 to edger=2? and lower speed - increase from 0.15 to 0.3
+  bridge.tx("regbot madd vel=0.1, edgel=-1:ir2 < 0.25\n"); // Attempt to fix by changing from edger=0 to edgel=-1?? - change from edger=0 to edger=2? 
   bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
-  //bridge.tx("regbot madd tr=0,vel=0.1:turn=180\n"); // try this turn instead
+  //bridge.tx("regbot madd tr=0,vel=0.1:turn=180\n"); // try this turn instead?
   bridge.tx("regbot madd vel=0.25,edgel=2:time=10\n");
 
 

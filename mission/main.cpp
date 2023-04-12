@@ -166,7 +166,7 @@ void seesawChallenge()
   bridge.tx("regbot madd vel=0.1,tr=0:turn=90\n");
 
   bridge.tx("regbot madd vel=0.25,edger=1:dist=0.2\n"); // catch the line
-  bridge.tx("regbot madd vel=0.25,edger=2:dist=0.85\n"); // drive to the ball - changed dist from 0.8 to 0.85 
+  bridge.tx("regbot madd vel=0.25,edger=2:dist=0.8\n"); // drive to the ball - change dist from 0.8 to 0.85?
   bridge.tx("regbot madd servo=1, pservo=-700, vservo=0:time=1\n"); //grab the ball
   bridge.tx("regbot madd vel=-0.1:dist=0.165\n");
   bridge.tx("regbot madd servo=1, pservo=-650, vservo=0:time=1\n");
@@ -185,8 +185,8 @@ void seesawChallenge()
 
   // zero the distance on the goal
   bridge.tx("regbot madd vel=0.1, edger=0:ir2 < 0.35\n"); // change from edger=0 to edger=2? and lower speed - increase from 0.15 to 0.3
-  //bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
-  bridge.tx("regbot madd tr=0,vel=0.1:turn=180\n"); // try this turn instead
+  bridge.tx("regbot madd vel=0.1,tr=0:turn=180\n");
+  //bridge.tx("regbot madd tr=0,vel=0.1:turn=180\n"); // try this turn instead
   bridge.tx("regbot madd vel=0.25,edgel=2:time=10\n");
 
 
@@ -270,7 +270,7 @@ void intermissionRotaryChallenge()
   bridge.tx("regbot madd vel=0:time=1\n"); // wait to flex
   bridge.tx("regbot madd vel=0.25,edger=-1:dist=1.25\n"); // countinue to the line going towards the rotating challenge
   bridge.tx("regbot madd vel=0.25,edger=-2:xl>10\n"); // countinue to the line going towards the rotating challenge
-  bridge.tx("vel=0.1:dist=0.15\n"); // drive a little past the line so that the robot turns onto the track
+  bridge.tx("vel=0.1:dist=0.17\n"); // drive a little past the line so that the robot turns onto the track - 0.1->0.15->0.17
   bridge.tx("regbot madd tr=0,vel=0.25:turn=-90\n"); // turn onto the path of the rotating challenge
   // in order to make sure it catches the line; either decrease turning angle from 90 or increase dist before turn from 0.1
 

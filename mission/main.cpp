@@ -265,13 +265,14 @@ void intermissionRotaryChallenge()
 
   
   bridge.tx("regbot madd vel=0.25,edger=2:time=15\n"); // wait to flex
-  bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.15\n"); // continue until just before the goal post
+  bridge.tx("regbot madd vel=0.25, edger=2:ir2 < 0.25\n"); // continue until just before the goal post
   bridge.tx("regbot madd tr=0,vel=0.25:turn=180\n"); // turn the robot to face along the line
   bridge.tx("regbot madd vel=0:time=1\n"); // wait to flex
   bridge.tx("regbot madd vel=0.25,edger=-1:dist=1.25\n"); // countinue to the line going towards the rotating challenge
   bridge.tx("regbot madd vel=0.25,edger=-2:xl>10\n"); // countinue to the line going towards the rotating challenge
-  bridge.tx("vel=0.1:dist=0.17\n"); // drive a little past the line so that the robot turns onto the track - 0.1->0.15->0.17
-  bridge.tx("regbot madd tr=0,vel=0.25:turn=-90\n"); // turn onto the path of the rotating challenge
+  bridge.tx("vel=0.1:dist=0.1\n"); // drive a little past the line so that the robot turns onto the track - 0.1->0.15->0.17
+  bridge.tx("regbot madd tr=0,vel=0.1:turn=-90\n"); // turn onto the path of the rotating challenge
+  bridge.tx("regbot madd vel=0.25,edgel=1:dist=0.2\n"); // added a line to catch the line, maybe change to edger?
   // in order to make sure it catches the line; either decrease turning angle from 90 or increase dist before turn from 0.1
 
   bridge.tx("regbot start\n");

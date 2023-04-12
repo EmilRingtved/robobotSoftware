@@ -68,22 +68,28 @@ stash any local changes and pull again, never commit changes made on the robot.
   Tested:
     Guillotine
     Seesaw 
-      - robot sometimes misses the line on the ramp when turning
+      - robot sometimes misses the line on the ramp when turning!! not fixable because the ramp keeps getting moved
+      - The robot sometimes doesnt stop correctly before goal
       - ball is not caught correctly, needs tuning
-      - drives too far when delivering ball, attempted fix is dist=50 (not tested yet)
+      - drives too far when delivering ball, attempted fix is dist=50 (not fully tested yet)
     Intermission 1
       - the turn needs to be adjusted so the robot hits the line before rotating gate
       - attempted fix is to increase driving length before turn from 10 to 15 cm (not tested yet)
   To be tested:
-    Rotary
-      - not expected to need tuning
-    Speed
-     - not expected to need tuning
     Intermission 2
       - tuned together with tunnel challenge
     Tunnel
       - probably needs tuning
     Goal
+
+
+  What to fix:
+    The robot wrongly detects the "goal" when trying to stop and turn. 
+    Sometimes it doesnt see it, most times now it stops earlier. 
+    A fix that hasnt been tested is to make the robot follow the left side of the line instead of the right.
+
+    The next issue is getting to the rotary challenge
+
  */
 
 
